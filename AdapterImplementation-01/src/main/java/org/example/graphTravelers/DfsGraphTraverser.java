@@ -1,14 +1,15 @@
 package org.example.graphTravelers;
 
-import edu.uci.ics.jung.graph.SparseMultigraph;
+import org.example.adapter.GraphAdapterInterface;
 
 import java.util.*;
 
 public class DfsGraphTraverser implements Traverser {
-    private final SparseMultigraph<Integer, String> graph;
 
-    public DfsGraphTraverser(SparseMultigraph<Integer, String> graph) {
-        this.graph = graph;
+    private final GraphAdapterInterface graphAdapter;
+
+    public DfsGraphTraverser(GraphAdapterInterface graphAdapter) {
+        this.graphAdapter = graphAdapter;
     }
 
     @Override
@@ -25,11 +26,14 @@ public class DfsGraphTraverser implements Traverser {
                 visited.add(vertex);
                 result.add(vertex);
 
-                // Get neighbors and sort them for deterministic output
-                List<Integer> neighbors = new ArrayList<>(graph.getNeighbors(vertex));
-                neighbors.sort(Integer::compareTo); // ترتیب صعودی همسایگان
+                // getNeighbors from the adapter
+                List<Integer> neighbors = graphAdapter.getNeighbors(vertex);
 
-                for (Integer neighbor : neighbors) {
+                // push neighbors in reverse order to maintain ascending visit
+                // so we pop in ascending order
+                ListIterator<Integer> li = neighbors.listIterator(neighbors.size());
+                while (li.hasPrevious()) {
+                    Integer neighbor = li.previous();
                     if (!visited.contains(neighbor)) {
                         stack.push(neighbor);
                     }
