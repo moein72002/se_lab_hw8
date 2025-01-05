@@ -1,7 +1,7 @@
 package org.example;
 
 import org.example.adapter.GraphAdapterInterface;
-import org.example.adapter.JungGraphAdapter;
+import org.example.adapter.JGraphTAdapter;
 import org.example.graphTravelers.BfsGraphTraverser;
 import org.example.graphTravelers.DfsGraphTraverser;
 import org.example.graphTravelers.Traverser;
@@ -11,17 +11,17 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
 
-        // Create an adapter for JUNG
-        GraphAdapterInterface graphAdapter = new JungGraphAdapter();
+        // Create an adapter for JGraphT
+        GraphAdapterInterface graphAdapter = new JGraphTAdapter();
 
-        // Add vertices via adapter
+        // Add vertices
         graphAdapter.addVertex(1);
         graphAdapter.addVertex(2);
         graphAdapter.addVertex(3);
         graphAdapter.addVertex(4);
         graphAdapter.addVertex(5);
 
-        // Add edges via adapter
+        // Add edges
         graphAdapter.addEdge("E1", 1, 2);
         graphAdapter.addEdge("E2", 1, 3);
         graphAdapter.addEdge("E3", 2, 4);
