@@ -8,7 +8,7 @@ import org.example.graphTravelers.Traverser;
 
 import java.util.List;
 
-public class Main {
+public class main {
     public static void main(String[] args) {
 
         // Create an adapter for JUNG
